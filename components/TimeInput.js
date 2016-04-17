@@ -49,7 +49,7 @@ var TimeInput = React.createClass({
     if (index || index === 0) caret.set(this.input, index)
   },
   handleBlur () {
-    this.setState({ caretIndex: null })
+    if (this.isMounted()) this.setState({ caretIndex: null })
   },
   handleTab (event) {
     var start = caret.start(this.input)
@@ -66,7 +66,7 @@ var TimeInput = React.createClass({
     event.preventDefault()
     var index = groupId * 3
     if (this.props.value.charAt(index) === ' ') index++
-    return this.setState({ caretIndex: index })
+    if (this.isMounted()) this.setState({ caretIndex: index })
   },
   handleArrows (event) {
     event.preventDefault()
@@ -169,7 +169,7 @@ var TimeInput = React.createClass({
   },
   onChange: function (str, caretIndex) {
     if (this.props.onChange) this.props.onChange(this.format(str))
-    if (caretIndex || caretIndex === 0) this.setState({ caretIndex: caretIndex })
+    if (this.isMounted() && typeof caretIndex === 'number') this.setState({ caretIndex: caretIndex })
   }
 })
 
