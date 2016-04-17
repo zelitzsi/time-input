@@ -28,6 +28,7 @@ var TimeInput = React.createClass({
     return (
       <div className='TimeInput'>
         <input
+          className='TimeInput-input'
           ref={(input) => { this.input = input }}
           type='text'
           size={this.props.value.length - 1}
