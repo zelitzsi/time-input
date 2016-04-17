@@ -19,6 +19,8 @@ describe('adder', function () {
     expect(adder('00:59', 1, 1)).to.eql('01:00')
     expect(adder('00:00:59', 2, 1)).to.eql('00:01:00')
     expect(adder('00:00:00:999', 3, 1)).to.eql('00:00:01:000')
+    expect(adder('12:00', 0, 1)).to.eql('13:00')
+    expect(adder('12:00 AM', 0, 1)).to.eql('01:00 AM')
   })
   it('should underflow to preceeding group', function () {
     expect(adder('01:00', 1, -1)).to.eql('00:59')
