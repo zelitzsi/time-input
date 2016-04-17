@@ -137,8 +137,8 @@ var TimeInput = React.createClass({
     var diff = newValue.length - value.length
     var end = caret.start(this.input)
     var insertion
+    event.preventDefault()
     if (diff > 0) {
-      event.preventDefault()
       var start = end - diff
       insertion = newValue.slice(end - diff, end)
       while (diff--) {
@@ -160,11 +160,12 @@ var TimeInput = React.createClass({
         }
       }
       newValue = value
-    } else if (diff < 0) {
-      event.preventDefault()
     }
     if (validate(newValue)) {
       this.onChange(newValue, end)
+    } else {
+      var caretIndex = this.props.value.length - (newValue.length - end)
+      if (this.isMounted()) this.setState({ caretIndex: caretIndex })
     }
   },
   onChange: function (str, caretIndex) {
