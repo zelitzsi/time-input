@@ -2,11 +2,11 @@
   "name": "time-input",
   "version": "1.1.0",
   "description": "A forgiving, user friendly, keyboard friendly react component for capturing time via a form input",
-  "main": "./lib/index",
+  "main": "./dist/index",
   "scripts": {
     "test": "karma start --single-run && node_modules/.bin/standard",
     "start": "node server.js",
-    "compile": "./node_modules/.bin/babel -d lib/ src/",
+    "compile": "./node_modules/.bin/babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
   "author": {
@@ -55,7 +55,7 @@
   },
   "standard": {
     "ignore": [
-      "/lib/*"
+      "/dist/*"
     ]
   },
   "keywords": [
