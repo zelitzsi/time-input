@@ -1,5 +1,5 @@
 var path = require('path')
-var webpackConfig = require('./webpack.config')
+var webpackConfig = require('./demo/webpack.config')
 webpackConfig.module.loaders.push({
   test: /\.js$/,
   include: [path.resolve('src/')],
