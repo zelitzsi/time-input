@@ -31,7 +31,6 @@ var TimeInput = React.createClass({
           className='TimeInput-input'
           ref={(input) => { this.input = input }}
           type='text'
-          size={this.props.value.length - 1}
           value={this.format(this.props.value)}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
