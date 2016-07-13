@@ -14,7 +14,7 @@ var TimeInput = React.createClass({
   getDefaultProps () {
     return {
       value: '12:00 AM',
-      defaultValue: '12:00 AM'
+      defaultValue: '12:00:00:000 AM'
     }
   },
   propTypes: {
