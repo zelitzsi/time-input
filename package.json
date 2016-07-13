@@ -1,6 +1,6 @@
 {
   "name": "time-input",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A forgiving, user friendly, keyboard friendly react component for capturing time via a form input",
   "main": "./dist/index",
   "scripts": {
