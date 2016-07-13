@@ -5,12 +5,11 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './demo.js'
+    path.join(__dirname, './demo.js')
   ],
   output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/public/',
-    filename: 'build.js'
+    path: path.join(__dirname, 'demo'),
+    filename: 'bundle.js'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -23,12 +22,12 @@ module.exports = {
         test: /\.js$/,
         loaders: [ 'babel' ],
         exclude: /node_modules/,
-        include: __dirname
+        include: path.join(__dirname, '..')
       },
       {
         test: /\.css?$/,
         loaders: [ 'style', 'raw' ],
-        include: __dirname
+        include: path.join(__dirname, '..')
       }
     ]
   }
