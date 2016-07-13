@@ -19,14 +19,19 @@ var TimeInput = React.createClass({
     }
   },
   propTypes: {
+    className: React.PropTypes.string,
     value: React.PropTypes.string,
     onChange: React.PropTypes.func,
     twelveHourTime: React.PropTypes.bool,
     defaultValue: React.PropTypes.string
   },
   render () {
+    let className = 'TimeInput'
+    if (this.props.className) {
+      className += (' ' + this.props.className)
+    }
     return (
-      <div className='TimeInput'>
+      <div className={className}>
         <input
           className='TimeInput-input'
           ref={(input) => { this.input = input }}
