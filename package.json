@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start --single-run && node_modules/.bin/standard",
     "start": "node demo/server.js",
-    "compile": "babel -d dist/ src/",
+    "compile": "NODE_ENV=production babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
   "author": "Alan Clarke <hi@alz.so> (alz.so)",
