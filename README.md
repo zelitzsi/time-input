@@ -16,7 +16,6 @@ npm install time-input
 var ReactDom = require('ReactDom')
 var TimeInput = require('time-input')
 
-
 function render (value) {
   ReactDom.render((
     <TimeInput value={value} onChange={render}/>
@@ -24,6 +23,16 @@ function render (value) {
 }
 
 render()
+```
+
+## valid formats
+```js
+/*
+ * '12:00'
+ * '12:00 AM'
+ * '12:00:00'
+ * '12:00:00:000 AM'
+*/
 ```
 ## run tests
 ```
