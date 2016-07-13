@@ -6,7 +6,7 @@ var TimeInput = require('../src/components/TimeInput')
   ReactDom.render((
     <TimeInput value={value} onChange={render}/>
   ), document.getElementById('demo-1'))
-})()
+})('12:00:00:000 AM')
 
 ;(function render (value) {
   ReactDom.render((
