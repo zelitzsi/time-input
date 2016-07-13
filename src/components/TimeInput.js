@@ -15,14 +15,12 @@ var TimeInput = React.createClass({
     return {
       value: '12:00:00:000 AM',
       defaultValue: '12:00:00:000 AM',
-      twelveHourTime: true
     }
   },
   propTypes: {
     className: React.PropTypes.string,
     value: React.PropTypes.string,
     onChange: React.PropTypes.func,
-    twelveHourTime: React.PropTypes.bool,
     defaultValue: React.PropTypes.string
   },
   render () {
