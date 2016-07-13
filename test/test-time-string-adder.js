@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var adder = require('../lib/time-string-adder')
+var adder = require('../src/time-string-adder')
 
 describe('adder', function () {
   it('should add correctly to each group', function () {

@@ -53,6 +53,11 @@
   "directories": {
     "test": "test"
   },
+  "standard": {
+    "ignore": [
+      "/lib/*"
+    ]
+  },
   "keywords": [
     "field",
     "form",

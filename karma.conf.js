@@ -2,7 +2,7 @@ var path = require('path')
 var webpackConfig = require('./webpack.config')
 webpackConfig.module.loaders.push({
   test: /\.js$/,
-  include: [path.resolve('components/'), path.resolve('lib/')],
+  include: [path.resolve('src/')],
   loader: 'isparta'
 })
 module.exports = function (config) {

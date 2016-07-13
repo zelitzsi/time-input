@@ -1,8 +1,8 @@
 /* global describe it */
 var ReactTestUtils = require('react-addons-test-utils')
-var caret = require('../lib/caret')
+var caret = require('../src/caret')
 var expect = require('chai').expect
-var render = require('./lib/renderTimeInput')
+var render = require('./src/renderTimeInput')
 
 describe('backspace', function () {
   var timeInput
