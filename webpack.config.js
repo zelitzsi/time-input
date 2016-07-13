@@ -5,12 +5,12 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './index'
+    './demo.js'
   ],
   output: {
     path: path.join(__dirname, 'public'),
     publicPath: '/public/',
-    filename: 'demo.js'
+    filename: 'build.js'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
