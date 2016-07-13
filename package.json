@@ -6,14 +6,13 @@
   "scripts": {
     "test": "karma start --single-run && node_modules/.bin/standard",
     "start": "node server.js",
-    "compile": "./node_modules/.bin/babel -d dist/ src/",
+    "compile": "babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
-  "author": {
-    "name": "Alan Clarke",
-    "email": "hi@alz.so",
-    "url": "alz.so"
-  },
+  "author": "Alan Clarke <hi@alz.so> (alz.so)",
+  "contributors": [
+    "Matt Livingston <matt.l.livingston@gmail.com>"
+  ],
   "license": "UNLICENSED",
   "dependencies": {
     "react": "^0.14.7"
@@ -66,5 +65,13 @@
     "time",
     "time input",
     "timepicker"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanclarke/time-input.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alanclarke/time-input/issues"
+  },
+  "homepage": "https://github.com/alanclarke/time-input#readme"
 }
