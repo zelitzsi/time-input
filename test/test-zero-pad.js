@@ -1,5 +1,5 @@
 /* global describe it */
-var pad = require('../lib/zero-pad')
+var pad = require('../src/zero-pad')
 var expect = require('chai').expect
 
 describe('zeroPad', function () {

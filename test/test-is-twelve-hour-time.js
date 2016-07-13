@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var isTwelveHourTime = require('../lib/is-twelve-hour-time')
+var isTwelveHourTime = require('../src/is-twelve-hour-time')
 
 describe('is12HourTime', function () {
   it('should return true for 12 hour time strings', function () {

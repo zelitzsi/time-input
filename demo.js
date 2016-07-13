@@ -1,6 +1,6 @@
 var React = require('react')
 var ReactDom = require('react-dom')
-var TimeInput = require('./components/TimeInput')
+var TimeInput = require('./src/components/TimeInput')
 
 ;(function render (value) {
   ReactDom.render((

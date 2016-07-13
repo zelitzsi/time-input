@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var getGroupId = require('../lib/get-group-id')
+var getGroupId = require('../src/get-group-id')
 
 describe('getGroupId', function () {
   it('should return the correct group index', function () {

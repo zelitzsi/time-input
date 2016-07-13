@@ -1,11 +1,11 @@
 var React = require('react')
-var isTwelveHourTime = require('../lib/is-twelve-hour-time')
-var replaceCharAt = require('../lib/replace-char-at')
-var getGroupId = require('../lib/get-group-id')
-var getGroups = require('../lib/get-groups')
-var adder = require('../lib/time-string-adder')
-var caret = require('../lib/caret')
-var validate = require('../lib/validate')
+var isTwelveHourTime = require('../is-twelve-hour-time')
+var replaceCharAt = require('../replace-char-at')
+var getGroupId = require('../get-group-id')
+var getGroups = require('../get-groups')
+var adder = require('../time-string-adder')
+var caret = require('../caret')
+var validate = require('../validate')
 
 var TimeInput = React.createClass({
   getInitialState () {
