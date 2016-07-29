@@ -29,6 +29,15 @@ describe('tabbing', function () {
     expect(timeInput.state.caretIndex).to.eql(null)
   })
 
+  it('should blur on escape', function () {
+    timeInput = tab(0)
+    ReactTestUtils.Simulate.keyDown(timeInput.input, {
+      keyCode: 27,
+      which: 27
+    })
+    expect(timeInput.state.caretIndex).to.eql(null)
+  })
+
   describe('with shift', function () {
     it('should move carat to the previous input group', function () {
       timeInput = tab(3, true)
