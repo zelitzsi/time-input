@@ -46,15 +46,21 @@ var TimeInput = React.createClass({
     if (isTwelveHourTime(val)) val = val.replace(/^00/, '12')
     return val.toUpperCase()
   },
+  componentDidMount () {
+    this.mounted = true
+  },
+  componentWillUnmount () {
+    this.mounted = false
+  },
   componentDidUpdate () {
     var index = this.state.caretIndex
     if (index || index === 0) caret.set(this.input, index)
   },
   handleBlur () {
-    if (this.isMounted()) this.setState({ caretIndex: null })
+    if (this.mounted) this.setState({ caretIndex: null })
   },
   handleEscape () {
-    if (this.isMounted()) this.input.blur()
+    if (this.mounted) this.input.blur()
   },
   handleTab (event) {
     var start = caret.start(this.input)
@@ -71,7 +77,7 @@ var TimeInput = React.createClass({
     event.preventDefault()
     var index = groupId * 3
     if (this.props.value.charAt(index) === ' ') index++
-    if (this.isMounted()) this.setState({ caretIndex: index })
+    if (this.mounted) this.setState({ caretIndex: index })
   },
   handleArrows (event) {
     event.preventDefault()
@@ -171,12 +177,12 @@ var TimeInput = React.createClass({
       this.onChange(newValue, end)
     } else {
       var caretIndex = this.props.value.length - (newValue.length - end)
-      if (this.isMounted()) this.setState({ caretIndex: caretIndex })
+      if (this.mounted) this.setState({ caretIndex: caretIndex })
     }
   },
   onChange: function (str, caretIndex) {
     if (this.props.onChange) this.props.onChange(this.format(str))
-    if (this.isMounted() && typeof caretIndex === 'number') this.setState({ caretIndex: caretIndex })
+    if (this.mounted && typeof caretIndex === 'number') this.setState({ caretIndex: caretIndex })
   }
 })
 
