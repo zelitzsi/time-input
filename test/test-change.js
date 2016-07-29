@@ -49,6 +49,12 @@ describe('change', function () {
     expect(caret.start(timeInput.input)).to.eql(1)
   })
 
+  it('should accept input when entire text is selected', function () {
+    timeInput = typeSomething('00:00', '11', 2)
+    expect(timeInput.input.value).to.eql('11:00')
+    expect(caret.start(timeInput.input)).to.eql(2)
+  })
+
   it('should not change if value is invalid', function () {
     timeInput = typeSomething('00:00', 'foobar', 0, true)
     expect(timeInput.input.value).to.eql('00:00')

@@ -144,8 +144,9 @@ var TimeInput = React.createClass({
     return /[:\s]/.test(char)
   },
   handleChange (event) {
-    var newValue = this.input.value
     var value = this.props.value
+    var newValue = this.input.value
+    newValue += value.substr(newValue.length, value.length)
     var diff = newValue.length - value.length
     var end = caret.start(this.input)
     var insertion
