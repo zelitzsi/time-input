@@ -41,14 +41,14 @@ describe('up', function () {
     timeInput = arrow('00:00:00:999', 9, true)
     expect(timeInput.input.value).to.eql('00:00:01:000')
   })
-  it('should increment 10x more when shift key is pressed', function () {
-    expect(arrow('00:00:00:000', 0, true, true).input.value).to.eql('10:00:00:000')
-    expect(arrow('00:15:00:000', 3, true, true).input.value).to.eql('00:25:00:000')
-    expect(arrow('00:00:40:000', 6, true, true).input.value).to.eql('00:00:50:000')
-    expect(arrow('00:00:00:100', 9, true, true).input.value).to.eql('00:00:00:110')
+  it('should increment 2x more when shift key is pressed', function () {
+    expect(arrow('00:00:00:000', 0, true, true).input.value).to.eql('02:00:00:000')
+    expect(arrow('00:15:00:000', 3, true, true).input.value).to.eql('00:17:00:000')
+    expect(arrow('00:00:40:000', 6, true, true).input.value).to.eql('00:00:42:000')
+    expect(arrow('00:00:00:100', 9, true, true).input.value).to.eql('00:00:00:102')
   })
-  it('should increment 100x more when shift key is pressed', function () {
-    expect(arrow('00:00:00:100', 9, true, true, true).input.value).to.eql('00:00:00:200')
+  it('should increment 4x more when shift key is pressed', function () {
+    expect(arrow('00:00:00:100', 9, true, true, true).input.value).to.eql('00:00:00:104')
   })
   it('should toggle AM/PM when carat is over AM/PM', function () {
     expect(arrow('01:00 AM', 6, true).input.value).to.eql('01:00 PM')
@@ -93,14 +93,14 @@ describe('down', function () {
     timeInput = arrow('00:00:01:000', 9)
     expect(timeInput.input.value).to.eql('00:00:00:999')
   })
-  it('should decrement 10x more when shift key is pressed', function () {
-    expect(arrow('10:00:00:000', 0, false, true).input.value).to.eql('00:00:00:000')
-    expect(arrow('00:25:00:000', 3, false, true).input.value).to.eql('00:15:00:000')
-    expect(arrow('00:00:50:000', 6, false, true).input.value).to.eql('00:00:40:000')
-    expect(arrow('00:00:00:110', 9, false, true).input.value).to.eql('00:00:00:100')
+  it('should decrement 2x more when shift key is pressed', function () {
+    expect(arrow('02:00:00:000', 0, false, true).input.value).to.eql('00:00:00:000')
+    expect(arrow('00:17:00:000', 3, false, true).input.value).to.eql('00:15:00:000')
+    expect(arrow('00:00:42:000', 6, false, true).input.value).to.eql('00:00:40:000')
+    expect(arrow('00:00:00:102', 9, false, true).input.value).to.eql('00:00:00:100')
   })
-  it('should decrement 100x more when shift and meta keys are pressed', function () {
-    expect(arrow('00:00:00:200', 9, false, true, true).input.value).to.eql('00:00:00:100')
+  it('should decrement 4x more when shift and meta keys are pressed', function () {
+    expect(arrow('00:00:00:104', 9, false, true, true).input.value).to.eql('00:00:00:100')
   })
   it('should toggle AM/PM when carat is over AM/PM', function () {
     expect(arrow('01:00 AM', 6, false).input.value).to.eql('01:00 PM')

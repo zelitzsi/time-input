@@ -79,8 +79,8 @@ var TimeInput = React.createClass({
     var value = this.props.value
     var amount = event.which === 38 ? 1 : -1
     if (event.shiftKey) {
-      amount *= 10
-      if (event.metaKey) amount *= 10
+      amount *= 2
+      if (event.metaKey) amount *= 2
     }
     value = adder(value, getGroupId(start), amount)
     this.onChange(value, start)
