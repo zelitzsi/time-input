@@ -2,7 +2,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var expect = require('chai').expect
-var TimeInput = require('../src/components/TimeInput')
+var TimeInput = require('../src/TimeInput')
 
 describe('classnames', function () {
   it('should render any provided classnames additionally', function () {

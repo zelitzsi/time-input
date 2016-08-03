@@ -1,6 +1,6 @@
 /* global describe it */
-var pad = require('../src/zero-pad')
 var expect = require('chai').expect
+var pad = require('../src/lib/zero-pad')
 
 describe('zeroPad', function () {
   it('should zero pad a number, given n digits', function () {

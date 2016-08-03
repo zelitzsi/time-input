@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var getGroups = require('../src/get-groups')
+var getGroups = require('../src/lib/get-groups')
 
 describe('getGroups', function () {
   it('should correctly split 12 hour time strings', function () {

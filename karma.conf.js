@@ -1,16 +1,22 @@
 var path = require('path')
-var webpackConfig = require('./demo/webpack.config')
-webpackConfig.module.loaders.push({
-  test: /\.js$/,
-  include: [path.resolve('src/')],
-  loader: 'isparta'
-})
+var webpackConfig = require('./webpack.config')
+
 module.exports = function (config) {
   config.set({
     frameworks: ['mocha'],
     files: [ 'test/test-*' ],
-    preprocessors: { '/**/*.js': ['webpack', 'sourcemap'] },
-    webpack: webpackConfig,
+    preprocessors: { 'test/test-*': ['webpack', 'sourcemap'] },
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: webpackConfig.module.loaders.concat([{
+          test: /\.js$/,
+          include: path.join(__dirname, 'src'),
+          exclude: /node_modules/,
+          loader: 'isparta'
+        }])
+      }
+    },
     webpackServer: {
       quiet: true,
       noInfo: true
@@ -18,10 +24,7 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     reporters: ['progress', 'coverage'],
     coverageReporter: {
-      reporters: [
-        // { type: 'html', dir: 'coverage' },
-        { type: 'text' }
-      ]
+      reporters: [{ type: 'html' }, { type: 'text' }]
     }
   })
 }

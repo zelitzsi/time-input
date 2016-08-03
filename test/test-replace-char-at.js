@@ -1,6 +1,6 @@
 /* global describe it */
-var replaceCharAt = require('../src/replace-char-at')
 var expect = require('chai').expect
+var replaceCharAt = require('../src/lib/replace-char-at')
 
 describe('replaceCharAt', function () {
   it('should remove the char at the specified index', function () {

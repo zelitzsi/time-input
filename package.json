@@ -2,9 +2,9 @@
   "name": "time-input",
   "version": "1.2.8",
   "description": "A keyboard friendly react component for capturing time",
-  "main": "./dist/index",
+  "main": "./dist/TimeInput",
   "scripts": {
-    "test": "karma start --single-run && node_modules/.bin/standard",
+    "test": "NODE_ENV=test karma start --single-run && node_modules/.bin/standard",
     "start": "node demo/server.js",
     "compile": "NODE_ENV=production babel -d dist/ src/",
     "prepublish": "npm run compile"

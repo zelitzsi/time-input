@@ -1,8 +1,8 @@
 /* global describe it */
 var ReactTestUtils = require('react-addons-test-utils')
-var caret = require('../src/caret')
 var expect = require('chai').expect
-var render = require('./src/renderTimeInput')
+var caret = require('../src/lib/caret')
+var render = require('./lib/renderTimeInput')
 
 describe('change', function () {
   var timeInput
@@ -52,6 +52,27 @@ describe('change', function () {
   it('should accept input when entire text is selected', function () {
     timeInput = typeSomething('00:00', '11', 2)
     expect(timeInput.input.value).to.eql('11:00')
+    expect(caret.start(timeInput.input)).to.eql(2)
+  })
+
+  it.skip('should accept input when entire groups are selected', function () {
+    timeInput = typeSomething('00:00', '1:00', 1)
+    expect(timeInput.input.value).to.eql('10:00')
+    expect(caret.start(timeInput.input)).to.eql(1)
+    timeInput = typeSomething('00:00', '00:1', 4)
+    expect(timeInput.input.value).to.eql('00:10')
+    expect(caret.start(timeInput.input)).to.eql(4)
+    timeInput = typeSomething('00:00:00:000', '00:00:00:1', 7)
+    expect(timeInput.input.value).to.eql('00:00:00:100')
+    expect(caret.start(timeInput.input)).to.eql(7)
+    timeInput = typeSomething('00:00:00:000', '00:00:00:11', 8)
+    expect(timeInput.input.value).to.eql('00:00:00:110')
+    expect(caret.start(timeInput.input)).to.eql(8)
+    timeInput = typeSomething('00:00:00:000', '11:000', 2)
+    expect(timeInput.input.value).to.eql('11:00:00:000')
+    expect(caret.start(timeInput.input)).to.eql(2)
+    timeInput = typeSomething('00:00:00:000', '00:11', 2)
+    expect(timeInput.input.value).to.eql('00:11:00:000')
     expect(caret.start(timeInput.input)).to.eql(2)
   })
 
