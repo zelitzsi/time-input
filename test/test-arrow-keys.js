@@ -1,8 +1,8 @@
 /* global describe it */
 var ReactTestUtils = require('react-addons-test-utils')
-var caret = require('../src/caret')
 var expect = require('chai').expect
-var render = require('./src/renderTimeInput')
+var caret = require('../src/lib/caret')
+var render = require('./lib/renderTimeInput')
 
 describe('up', function () {
   var timeInput

@@ -1,7 +1,7 @@
 /* global describe it */
 var expect = require('chai').expect
-var getGroups = require('../src/get-groups')
-var stringify = require('../src/stringify')
+var getGroups = require('../src/lib/get-groups')
+var stringify = require('../src/lib/stringify')
 
 describe('stringify', function () {
   it('should correctly stringify 12 hour time strings', function () {

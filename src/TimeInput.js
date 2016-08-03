@@ -1,11 +1,11 @@
 var React = require('react')
-var isTwelveHourTime = require('../is-twelve-hour-time')
-var replaceCharAt = require('../replace-char-at')
-var getGroupId = require('../get-group-id')
-var getGroups = require('../get-groups')
-var adder = require('../time-string-adder')
-var caret = require('../caret')
-var validate = require('../validate')
+var isTwelveHourTime = require('./lib/is-twelve-hour-time')
+var replaceCharAt = require('./lib/replace-char-at')
+var getGroupId = require('./lib/get-group-id')
+var getGroups = require('./lib/get-groups')
+var adder = require('./lib/time-string-adder')
+var caret = require('./lib/caret')
+var validate = require('./lib/validate')
 
 var TimeInput = React.createClass({
   getInitialState () {
@@ -144,8 +144,9 @@ var TimeInput = React.createClass({
     return /[:\s]/.test(char)
   },
   handleChange (event) {
-    var newValue = this.input.value
     var value = this.props.value
+    var newValue = this.input.value
+    newValue += value.substr(newValue.length, value.length)
     var diff = newValue.length - value.length
     var end = caret.start(this.input)
     var insertion

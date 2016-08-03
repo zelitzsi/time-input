@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var getBase = require('../src/get-base')
+var getBase = require('../src/lib/get-base')
 
 describe('getBase', function () {
   it('should return the correct base for group 0', function () {

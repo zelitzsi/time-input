@@ -1,6 +1,6 @@
 /* global describe it */
 var expect = require('chai').expect
-var toggle24Hr = require('../src/toggle-24-hour')
+var toggle24Hr = require('../src/lib/toggle-24-hour')
 
 describe('toggle24Hr', function () {
   it('should correctly stringify 12 hour time strings', function () {
