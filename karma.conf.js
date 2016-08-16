@@ -22,7 +22,7 @@ module.exports = function (config) {
       noInfo: true
     },
     browsers: ['Chrome'],
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
     coverageReporter: {
       reporters: [{ type: 'html' }, { type: 'text' }]
     }
