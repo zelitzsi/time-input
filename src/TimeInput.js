@@ -1,4 +1,6 @@
 var React = require('react')
+var CreateReactClass = require('create-react-class')
+var PropTypes = require('prop-types')
 var isTwelveHourTime = require('./lib/is-twelve-hour-time')
 var replaceCharAt = require('./lib/replace-char-at')
 var getGroupId = require('./lib/get-group-id')
@@ -7,7 +9,7 @@ var adder = require('./lib/time-string-adder')
 var caret = require('./lib/caret')
 var validate = require('./lib/validate')
 
-var TimeInput = React.createClass({
+var TimeInput = CreateReactClass({
   getInitialState () {
     return {}
   },
@@ -18,10 +20,10 @@ var TimeInput = React.createClass({
     }
   },
   propTypes: {
-    className: React.PropTypes.string,
-    value: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    defaultValue: React.PropTypes.string
+    className: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    defaultValue: PropTypes.string
   },
   render () {
     let className = 'TimeInput'
