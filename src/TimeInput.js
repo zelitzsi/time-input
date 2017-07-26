@@ -8,6 +8,7 @@ var getGroups = require('./lib/get-groups')
 var adder = require('./lib/time-string-adder')
 var caret = require('./lib/caret')
 var validate = require('./lib/validate')
+var SILHOUETTE = '00:00:00:000 AM'
 
 var TimeInput = CreateReactClass({
   getInitialState () {
@@ -15,18 +16,16 @@ var TimeInput = CreateReactClass({
   },
   getDefaultProps () {
     return {
-      value: '12:00 AM',
-      defaultValue: '00:00:00:000 AM'
+      value: '12:00 AM'
     }
   },
   propTypes: {
     className: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    defaultValue: PropTypes.string
+    onChange: PropTypes.func
   },
   render () {
-    let className = 'TimeInput'
+    var className = 'TimeInput'
     if (this.props.className) {
       className += (' ' + this.props.className)
     }
@@ -93,46 +92,55 @@ var TimeInput = CreateReactClass({
     value = adder(value, getGroupId(start), amount)
     this.onChange(value, start)
   },
+  silhouette () {
+    return this.props.value.replace(/\d/g, function (val, i) {
+      return SILHOUETTE.charAt(i)
+    })
+  },
   handleBackspace (event) {
     event.preventDefault()
-    var defaultValue = this.props.defaultValue
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
+    if (!start && !end) return
     var diff = end - start
+    var silhouette = this.silhouette()
     if (!diff) {
       if (value[start - 1] === ':') start--
-      value = replaceCharAt(value, start - 1, defaultValue.charAt(start - 1))
+      value = replaceCharAt(value, start - 1, silhouette.charAt(start - 1))
       start--
     } else {
       while (diff--) {
         if (value[end - 1] !== ':') {
-          value = replaceCharAt(value, end - 1, defaultValue.charAt(end - 1))
+          value = replaceCharAt(value, end - 1, silhouette.charAt(end - 1))
         }
         end--
       }
     }
+    if (value.charAt(start - 1) === ':') start--
     this.onChange(value, start)
   },
   handleForwardspace (event) {
     event.preventDefault()
-    var defaultValue = this.props.defaultValue
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
+    if (start === end === value.length - 1) return
     var diff = end - start
+    var silhouette = this.silhouette()
     if (!diff) {
       if (value[start] === ':') start++
-      value = replaceCharAt(value, start, defaultValue.charAt(start))
+      value = replaceCharAt(value, start, silhouette.charAt(start))
       start++
     } else {
       while (diff--) {
         if (value[end - 1] !== ':') {
-          value = replaceCharAt(value, start, defaultValue.charAt(start))
+          value = replaceCharAt(value, start, silhouette.charAt(start))
         }
         start++
       }
     }
+    if (value.charAt(start) === ':') start++
     this.onChange(value, start)
   },
   handleKeyDown (event) {
@@ -148,13 +156,13 @@ var TimeInput = CreateReactClass({
   handleChange (event) {
     var value = this.props.value
     var newValue = this.input.value
-    newValue += value.substr(newValue.length, value.length)
+    // newValue += value.substr(newValue.length, value.length)
     var diff = newValue.length - value.length
     var end = caret.start(this.input)
     var insertion
+    var start = end - Math.abs(diff)
     event.preventDefault()
     if (diff > 0) {
-      var start = end - diff
       insertion = newValue.slice(end - diff, end)
       while (diff--) {
         var oldChar = value.charAt(start)
@@ -175,8 +183,17 @@ var TimeInput = CreateReactClass({
         }
       }
       newValue = value
+    } else {
+      if (newValue.charAt(start) === ':') start++
+      // apply default to selection
+      var result = value
+      for (var i = start; i < end; i++) {
+        result = replaceCharAt(result, i, newValue.charAt(i))
+      }
+      newValue = result
     }
     if (validate(newValue)) {
+      if (newValue.charAt(end) === ':') end++
       this.onChange(newValue, end)
     } else {
       var caretIndex = this.props.value.length - (newValue.length - end)

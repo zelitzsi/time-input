@@ -6,6 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test karma start --single-run && node_modules/.bin/standard",
     "start": "node demo/server.js",
+    "demo": "node demo/server.js",
     "compile": "NODE_ENV=production babel -d dist/ src/",
     "prepublish": "npm run compile"
   },
@@ -42,7 +43,7 @@
     "raw-loader": "^0.5.1",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
-    "react-dom": "^15.5.4",
+    "react-dom": "^15.6.1",
     "react-test-utils": "0.0.1",
     "source-map-loader": "^0.1.5",
     "standard": "^6.0.7",

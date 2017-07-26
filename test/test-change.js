@@ -1,5 +1,5 @@
 /* global describe it */
-var ReactTestUtils = require('react-addons-test-utils')
+var ReactTestUtils = require('react-dom/test-utils')
 var expect = require('chai').expect
 var caret = require('../src/lib/caret')
 var render = require('./lib/renderTimeInput')
@@ -13,10 +13,10 @@ describe('change', function () {
     expect(caret.start(timeInput.input)).to.eql(1)
   })
 
-  it('should preserve carat position when has a preceeding ":"', function () {
+  it('should skip carat over preceeding ":"', function () {
     timeInput = typeSomething('00:00', '010:00', 2)
     expect(timeInput.input.value).to.eql('01:00')
-    expect(caret.start(timeInput.input)).to.eql(2)
+    expect(caret.start(timeInput.input)).to.eql(3)
   })
 
   it('should skip over a subsequent ":"', function () {
@@ -52,22 +52,25 @@ describe('change', function () {
   it('should accept input when entire text is selected', function () {
     timeInput = typeSomething('00:00', '11', 2)
     expect(timeInput.input.value).to.eql('11:00')
-    expect(caret.start(timeInput.input)).to.eql(2)
+    expect(caret.start(timeInput.input)).to.eql(3)
   })
 
-  it.skip('should accept input when entire groups are selected', function () {
+  it('should accept input when entire groups are selected', function () {
     timeInput = typeSomething('00:00', '1:00', 1)
     expect(timeInput.input.value).to.eql('10:00')
     expect(caret.start(timeInput.input)).to.eql(1)
     timeInput = typeSomething('00:00', '00:1', 4)
     expect(timeInput.input.value).to.eql('00:10')
     expect(caret.start(timeInput.input)).to.eql(4)
-    timeInput = typeSomething('00:00:00:000', '00:00:00:1', 7)
+    timeInput = typeSomething('00:00:00:000', '00:00:00:1', 10)
     expect(timeInput.input.value).to.eql('00:00:00:100')
-    expect(caret.start(timeInput.input)).to.eql(7)
-    timeInput = typeSomething('00:00:00:000', '00:00:00:11', 8)
+    expect(caret.start(timeInput.input)).to.eql(10)
+  })
+
+  it.skip('should accept input when entire groups are pasted over', function () {
+    timeInput = typeSomething('00:00:00:000', '00:00:00:11', 10)
     expect(timeInput.input.value).to.eql('00:00:00:110')
-    expect(caret.start(timeInput.input)).to.eql(8)
+    expect(caret.start(timeInput.input)).to.eql(10)
     timeInput = typeSomething('00:00:00:000', '11:000', 2)
     expect(timeInput.input.value).to.eql('11:00:00:000')
     expect(caret.start(timeInput.input)).to.eql(2)
