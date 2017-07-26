@@ -8,6 +8,7 @@ var getGroups = require('./lib/get-groups')
 var adder = require('./lib/time-string-adder')
 var caret = require('./lib/caret')
 var validate = require('./lib/validate')
+var SILHOUETTE = '00:00:00:000 AM'
 
 var TimeInput = CreateReactClass({
   getInitialState () {
@@ -15,15 +16,13 @@ var TimeInput = CreateReactClass({
   },
   getDefaultProps () {
     return {
-      value: '12:00 AM',
-      defaultValue: '00:00:00:000 AM'
+      value: '12:00 AM'
     }
   },
   propTypes: {
     className: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    defaultValue: PropTypes.string
+    onChange: PropTypes.func
   },
   render () {
     let className = 'TimeInput'
@@ -95,19 +94,18 @@ var TimeInput = CreateReactClass({
   },
   handleBackspace (event) {
     event.preventDefault()
-    var defaultValue = this.props.defaultValue
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
     var diff = end - start
     if (!diff) {
       if (value[start - 1] === ':') start--
-      value = replaceCharAt(value, start - 1, defaultValue.charAt(start - 1))
+      value = replaceCharAt(value, start - 1, SILHOUETTE.charAt(start - 1))
       start--
     } else {
       while (diff--) {
         if (value[end - 1] !== ':') {
-          value = replaceCharAt(value, end - 1, defaultValue.charAt(end - 1))
+          value = replaceCharAt(value, end - 1, SILHOUETTE.charAt(end - 1))
         }
         end--
       }
@@ -116,19 +114,18 @@ var TimeInput = CreateReactClass({
   },
   handleForwardspace (event) {
     event.preventDefault()
-    var defaultValue = this.props.defaultValue
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
     var diff = end - start
     if (!diff) {
       if (value[start] === ':') start++
-      value = replaceCharAt(value, start, defaultValue.charAt(start))
+      value = replaceCharAt(value, start, SILHOUETTE.charAt(start))
       start++
     } else {
       while (diff--) {
         if (value[end - 1] !== ':') {
-          value = replaceCharAt(value, start, defaultValue.charAt(start))
+          value = replaceCharAt(value, start, SILHOUETTE.charAt(start))
         }
         start++
       }
