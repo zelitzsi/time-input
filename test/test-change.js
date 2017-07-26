@@ -67,7 +67,7 @@ describe('change', function () {
     expect(caret.start(timeInput.input)).to.eql(10)
   })
 
-  it('should accept input when entire groups are pasted over', function () {
+  it.skip('should accept input when entire groups are pasted over', function () {
     timeInput = typeSomething('00:00:00:000', '00:00:00:11', 10)
     expect(timeInput.input.value).to.eql('00:00:00:110')
     expect(caret.start(timeInput.input)).to.eql(10)

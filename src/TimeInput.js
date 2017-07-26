@@ -102,6 +102,7 @@ var TimeInput = CreateReactClass({
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
+    if (!start && !end) return
     var diff = end - start
     var silhouette = this.silhouette()
     if (!diff) {
@@ -116,6 +117,7 @@ var TimeInput = CreateReactClass({
         end--
       }
     }
+    if (value.charAt(start - 1) === ':') start--
     this.onChange(value, start)
   },
   handleForwardspace (event) {
@@ -123,6 +125,7 @@ var TimeInput = CreateReactClass({
     var start = caret.start(this.input)
     var value = this.props.value
     var end = caret.end(this.input)
+    if (start === end === value.length - 1) return
     var diff = end - start
     var silhouette = this.silhouette()
     if (!diff) {
@@ -137,6 +140,7 @@ var TimeInput = CreateReactClass({
         start++
       }
     }
+    if (value.charAt(start) === ':') start++
     this.onChange(value, start)
   },
   handleKeyDown (event) {
@@ -152,13 +156,13 @@ var TimeInput = CreateReactClass({
   handleChange (event) {
     var value = this.props.value
     var newValue = this.input.value
-    newValue += value.substr(newValue.length, value.length)
+    // newValue += value.substr(newValue.length, value.length)
     var diff = newValue.length - value.length
     var end = caret.start(this.input)
     var insertion
+    var start = end - Math.abs(diff)
     event.preventDefault()
     if (diff > 0) {
-      var start = end - diff
       insertion = newValue.slice(end - diff, end)
       while (diff--) {
         var oldChar = value.charAt(start)
@@ -179,8 +183,17 @@ var TimeInput = CreateReactClass({
         }
       }
       newValue = value
+    } else {
+      if (newValue.charAt(start) === ':') start++
+      // apply default to selection
+      var result = value
+      for (var i = start; i < end; i++) {
+        result = replaceCharAt(result, i, newValue.charAt(i))
+      }
+      newValue = result
     }
     if (validate(newValue)) {
+      if (newValue.charAt(end) === ':') end++
       this.onChange(newValue, end)
     } else {
       var caretIndex = this.props.value.length - (newValue.length - end)
