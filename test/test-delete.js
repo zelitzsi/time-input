@@ -1,5 +1,5 @@
 /* global describe it */
-var ReactTestUtils = require('react-addons-test-utils')
+var ReactTestUtils = require('react-dom/test-utils')
 var expect = require('chai').expect
 var caret = require('../src/lib/caret')
 var render = require('./lib/renderTimeInput')
