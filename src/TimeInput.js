@@ -25,7 +25,7 @@ var TimeInput = CreateReactClass({
     onChange: PropTypes.func
   },
   render () {
-    let className = 'TimeInput'
+    var className = 'TimeInput'
     if (this.props.className) {
       className += (' ' + this.props.className)
     }
