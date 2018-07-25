@@ -22,7 +22,8 @@ var TimeInput = CreateReactClass({
   propTypes: {
     className: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
   },
   render () {
     var className = 'TimeInput'
@@ -39,6 +40,7 @@ var TimeInput = CreateReactClass({
           onChange={this.handleChange}
           onBlur={this.handleBlur}
           onKeyDown={this.handleKeyDown}
+          disabled={this.props.disabled}
         />
       </div>
     )
